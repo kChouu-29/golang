@@ -1,9 +1,10 @@
 package restaurantmodel
 
 type Resturant struct {
-	Id   int    `json:"id" gorm:"column:id;"` // ten bien phai viet hoa
-	Name string `json:"name" gorm:"column:name;"`
-	Addr string `json:"addr" gorm:"column:addr"`
+	Id     int    `json:"id" gorm:"column:id;"` // ten bien phai viet hoa
+	Name   string `json:"name" gorm:"column:name;"`
+	Addr   string `json:"addr" gorm:"column:addr"`
+	Status int    `json:"status" gorm:"column:status"`
 }
 
 func (Resturant) TableName() string {

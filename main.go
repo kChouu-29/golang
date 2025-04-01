@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"myCode/compoment/appctx"
 	"myCode/module/restaurant/transport/ginrestaurant"
 	"net/http"
 	"os"
@@ -53,12 +54,14 @@ func main() {
 		})
 	})
 
+	appContext := appctx.NewAppContext(db)
+
 	// POST /restaurants
 	v1 := r.Group("/v1")
 
 	restaurants := v1.Group("/restaurants")
 
-	restaurants.POST("", ginrestaurant.CreateRestaurant(db)) //func(c *gin.Context) {
+	restaurants.POST("", ginrestaurant.CreateRestaurant(appContext)) //func(c *gin.Context) {
 	// 	var data Resturant
 
 	// 	if err := c.ShouldBind(&data); err != nil {
@@ -152,7 +155,7 @@ func main() {
 	})
 
 	//DELETE
-	restaurants.DELETE("/:id", ginrestaurant.DeleteRestaurant(db)) //func(c *gin.Context) {
+	restaurants.DELETE("/:id", ginrestaurant.DeleteRestaurant(appContext)) //func(c *gin.Context) {
 
 	// 	id, err := strconv.Atoi(c.Param("id"))
 
